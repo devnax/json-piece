@@ -2,8 +2,7 @@ const isObject = (obj: any) => typeof obj === "object" && !Array.isArray(obj);
 const isArray = (arr: any) => typeof arr === "object" && Array.isArray(arr);
 const isString = (str: any) => typeof str === "string";
 
-
-export const isStringfy = (str: string): boolean => {
+const isStringfy = (str: string): boolean => {
   const firstChar = str.charAt(0);
   const lastChar = str.charAt(str.length - 1);
   if ((firstChar === "{" || firstChar === "[") && firstChar === lastChar) {
@@ -11,25 +10,8 @@ export const isStringfy = (str: string): boolean => {
   }
   return false;
 };
-export const isStringObject = (str: string): boolean => {
-  const firstChar = str.charAt(0);
-  const lastChar = str.charAt(str.length - 1);
-  if (firstChar === "{" && lastChar === "}") {
-    return true;
-  }
-  return false;
-};
 
-export const isStringArray = (str: string): boolean => {
-  const firstChar = str.charAt(0);
-  const lastChar = str.charAt(str.length - 1);
-  if (firstChar === "[" && lastChar === "]") {
-    return true;
-  }
-  return false;
-};
-
-export const arrayToString = (arr: any[]): string => {
+const arrayToString = (arr: any[]): string => {
   if (isArray(arr)) {
     let formate = "";
     let coma = "";
@@ -51,7 +33,7 @@ export const arrayToString = (arr: any[]): string => {
   return "";
 };
 
-export const objectToString = (obj: { [key: string]: any }): string => {
+const objectToString = (obj: { [key: string]: any }): string => {
   if (isObject(obj)) {
     let formate = "";
     let coma = "";
@@ -75,7 +57,7 @@ export const objectToString = (obj: { [key: string]: any }): string => {
   return "";
 };
 
-export const toString = (data: any, encode = true): string => {
+const toString = (data: any, encode = true): string => {
   let res = data;
   if (isArray(data)) {
     res = arrayToString(data);
@@ -88,12 +70,20 @@ export const toString = (data: any, encode = true): string => {
   return res;
 };
 
-export const parse = (str: string, decode = true) => {
+const parse = (str: string, decode = true) => {
   str = decode ? decodeURI(str) : str;
   // eslint-disable-next-line
   return new Function(`return ${str}`)(10);
 };
 
-export const isEqual = (a: any, b: any) => {
+const isEqual = (a: any, b: any) => {
   return toString(a) === toString(b);
 };
+
+
+export {
+    isEqual,
+    parse,
+    toString,
+    isStringfy
+}
