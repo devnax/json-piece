@@ -20,4 +20,6 @@ npm install --save json-piece
 
   const stringfy  = piece.toString(array | object)
   const parse     = piece.parse(stringfy)
+  const equal     = piece.isEqual(stringfy, parse)// true
+  const isStringfy  = piece.isStringfy(stringfy) // true
 ```
