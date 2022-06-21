@@ -52,10 +52,11 @@ const objectToString = (obj: { [key: string]: any }): string => {
 
 export const isStringfy = (str: string): boolean => {
   str = decodeURI(str).trim()
-  const firstChar = str.charAt(0);
-  const lastChar = str.charAt(str.length - 1);
-  if ((firstChar === "{" || firstChar === "[") && firstChar === lastChar) {
-    return true;
+  const firstChar = str.charAt(0).trim();
+  const lastChar = str.charAt(str.length - 1).trim();
+
+  if ((firstChar === "{" || firstChar === "[") && (lastChar === "}" || lastChar === "]")) {
+     return true;
   }
   return false;
 };
