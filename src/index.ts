@@ -2,14 +2,7 @@ const isObject = (obj: any) => typeof obj === "object" && !Array.isArray(obj);
 const isArray = (arr: any) => typeof arr === "object" && Array.isArray(arr);
 const isString = (str: any) => typeof str === "string";
 
-const isStringfy = (str: string): boolean => {
-  const firstChar = str.charAt(0);
-  const lastChar = str.charAt(str.length - 1);
-  if ((firstChar === "{" || firstChar === "[") && firstChar === lastChar) {
-    return true;
-  }
-  return false;
-};
+
 
 const arrayToString = (arr: any[]): string => {
   if (isArray(arr)) {
@@ -57,7 +50,17 @@ const objectToString = (obj: { [key: string]: any }): string => {
   return "";
 };
 
-const toString = (data: any, encode = true): string => {
+export const isStringfy = (str: string): boolean => {
+  str = decodeURI(str).trim()
+  const firstChar = str.charAt(0);
+  const lastChar = str.charAt(str.length - 1);
+  if ((firstChar === "{" || firstChar === "[") && firstChar === lastChar) {
+    return true;
+  }
+  return false;
+};
+
+export const toString = (data: any, encode = true): string => {
   let res = data;
   if (isArray(data)) {
     res = arrayToString(data);
@@ -70,20 +73,13 @@ const toString = (data: any, encode = true): string => {
   return res;
 };
 
-const parse = (str: string, decode = true) => {
+export const parse = (str: string, decode = true) => {
   str = decode ? decodeURI(str) : str;
   // eslint-disable-next-line
   return new Function(`return ${str}`)(10);
 };
 
-const isEqual = (a: any, b: any) => {
+export const isEqual = (a: any, b: any) => {
   return toString(a) === toString(b);
 };
 
-
-export {
-    isEqual,
-    parse,
-    toString,
-    isStringfy
-}
