@@ -16,7 +16,7 @@ npm install --save json-piece
 
 ```js
 
-  import piece from 'json-piece'
+  import * as piece from 'json-piece'
 
   const stringfy  = piece.toString(array | object)
   const parse     = piece.parse(stringfy)
