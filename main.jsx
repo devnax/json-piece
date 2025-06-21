@@ -1,10 +1,9 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import add from './src'
 
-const App  = () => {
+const App = () => {
   return (
-    <div style={{fontFamily: 'monospace,math, sans-serif', textAlign: 'center', marginTop: '50px' }}>
+    <div style={{ fontFamily: 'monospace,math, sans-serif', textAlign: 'center', marginTop: '50px' }}>
       <h1>Welcome to makepack CLI!</h1>
       <p>Edit <code>index.tsx</code> and save to reload.</p>
       <a
@@ -15,8 +14,7 @@ const App  = () => {
       >
         Learn React
       </a>
-      <div style={{marginTop: "50px"}}>
-        <code>{add(5,5)}</code>
+      <div style={{ marginTop: "50px" }}>
       </div>
     </div>
   );
@@ -26,4 +24,3 @@ if (rootEle) {
   const root = createRoot(rootEle);
   root.render(<App />);
 }
-  
